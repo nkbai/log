@@ -22,7 +22,6 @@ fi
 
 # Automatic checks
 test -z "$(gometalinter -j 4 --disable-all \
---enable=gas \
 --enable=golint \
 --enable=vet \
 --enable=vetshadow \
