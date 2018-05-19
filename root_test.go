@@ -9,12 +9,12 @@ import (
 
 func MyCallerFuncHandler(h Handler) Handler {
 	return FuncHandler(func(r *Record) error {
-		r.Ctx = append(r.Ctx, "fn", fmt.Sprintf("%s:%n:%d", r.Call,r.Call,r.Call))
+		r.Ctx = append(r.Ctx, "fn", fmt.Sprintf("%s:%n:%d", r.Call, r.Call, r.Call))
 		return h.Log(r)
 	})
 }
 func MyStreamHandler2(wr io.Writer) Handler {
-	fmtr:=TerminalFormat(true)
+	fmtr := TerminalFormat(true)
 	h := FuncHandler(func(r *Record) error {
 		_, err := wr.Write(fmtr.Format(r))
 		return err
@@ -23,5 +23,6 @@ func MyStreamHandler2(wr io.Writer) Handler {
 }
 func TestRoot(t *testing.T) {
 	Root().SetHandler(LvlFilterHandler(LvlTrace, MyStreamHandler2(os.Stderr)))
+	t.Error("always error")
 	Trace("hello,world")
 }

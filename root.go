@@ -8,8 +8,10 @@ import (
 )
 
 var (
-	root          = &logger{[]interface{}{}, new(swapHandler)}
+	root = &logger{[]interface{}{}, new(swapHandler)}
+	//StdoutHandler handler output to stdout
 	StdoutHandler = StreamHandler(os.Stdout, LogfmtFormat())
+	//StderrHandler output to stderr
 	StderrHandler = StreamHandler(os.Stderr, LogfmtFormat())
 )
 
@@ -35,7 +37,7 @@ func Root() Logger {
 
 // Trace is a convenient alias for Root().Trace
 func Trace(format string, ctx ...interface{}) {
-	format = fmt.Sprintfx(format, ctx...)
+	format = fmt.Sprintf(format, ctx...)
 	root.write(format, LvlTrace, nil)
 }
 
@@ -69,6 +71,8 @@ func Crit(format string, ctx ...interface{}) {
 	root.write(format, LvlCrit, nil)
 	os.Exit(1)
 }
+
+//StringInterface conver any object to string and it's depth is `depth`
 func StringInterface(i interface{}, depth int) string {
 	stringer, ok := i.(fmt.Stringer)
 	if ok {
@@ -81,6 +85,8 @@ func StringInterface(i interface{}, depth int) string {
 	s := spew.Sdump(i)
 	return s
 }
+
+//StringInterface1 convert any object to string ,it's depth is 1
 func StringInterface1(i interface{}) string {
 	stringer, ok := i.(fmt.Stringer)
 	if ok {
