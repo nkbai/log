@@ -23,6 +23,5 @@ func MyStreamHandler2(wr io.Writer) Handler {
 }
 func TestRoot(t *testing.T) {
 	Root().SetHandler(LvlFilterHandler(LvlTrace, MyStreamHandler2(os.Stderr)))
-	t.Error("always error")
 	Trace("hello,world")
 }
