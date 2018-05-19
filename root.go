@@ -35,7 +35,7 @@ func Root() Logger {
 
 // Trace is a convenient alias for Root().Trace
 func Trace(format string, ctx ...interface{}) {
-	format = fmt.Sprintf(format, ctx...)
+	format = fmt.Sprintfx(format, ctx...)
 	root.write(format, LvlTrace, nil)
 }
 
