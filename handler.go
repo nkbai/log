@@ -361,7 +361,7 @@ func (m muster) NetHandler(network, addr string, fmtr Format) Handler {
 //DefaultCallerFuncHandler DefaultCallerFuncHandler
 func DefaultCallerFuncHandler(h Handler) Handler {
 	return FuncHandler(func(r *Record) error {
-		r.Ctx = append(r.Ctx, "fn", fmt.Sprintf("%s:%n:%d", r.Call, r.Call, r.Call))
+		r.Ctx = append(r.Ctx, "fn", fmt.Sprintf("%s:%d", r.Call, r.Call))
 		return h.Log(r)
 	})
 }
