@@ -6,3 +6,9 @@ go:
 - 1.10.x
 script:
 - go test -v ./...
+notifications:
+  email:
+    recipients:
+        nkbai@163.com
+    on_success: change
+    on_failure: always
