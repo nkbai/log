@@ -1,11 +1,13 @@
 language: go
 go:
-- 1.x
 - '1.8'
-- '1.9'
-- 1.10.x
+sudo: false
+install:
+- go get -v github.com/alecthomas/gometalinter
+- gometalinter --install
 script:
-- go test -v ./...
+  - export PATH=$PATH:$HOME/gopath/bin
+  - ./goclean.sh
 notifications:
   email:
     recipients:
