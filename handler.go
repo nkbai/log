@@ -6,6 +6,7 @@ import (
 	"net"
 	"os"
 	"reflect"
+	"runtime"
 	"sync"
 
 	"github.com/go-stack/stack"
