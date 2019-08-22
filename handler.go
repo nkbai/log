@@ -368,7 +368,8 @@ func DefaultCallerFuncHandler(h Handler) Handler {
 
 //DefaultStreamHandler DefaultStreamHandler
 func DefaultStreamHandler(wr io.Writer) Handler {
-	fmtr := TerminalFormat(true)
+	//disable color for windows 
+	fmtr := TerminalFormat(runtime.GOOS != "windows")
 	h := FuncHandler(func(r *Record) error {
 		_, err := wr.Write(fmtr.Format(r))
 		return err
