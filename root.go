@@ -41,7 +41,7 @@ func Trace(format string, ctx ...interface{}) {
 }
 func Tracef(format string, args ...interface{}) {
 	format = fmt.Sprintf(format, args...)
-	root.write(format, LvlDebug, nil)
+	root.write(format, LvlTrace, nil)
 }
 // Debug is a convenient alias for Root().Debug
 func Debug(format string, ctx ...interface{}) {
